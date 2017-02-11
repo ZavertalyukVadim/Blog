@@ -1,9 +1,15 @@
 package blog.domain;
 
+import org.hibernate.annotations.*;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.hibernate.annotations.CascadeType.REMOVE;
 
 @Entity
 @Table(name = "post")
@@ -56,6 +62,7 @@ public class Post {
     private
     Author author;
 
+    @Cascade(REMOVE)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
     private List<Comment> comments = new ArrayList();
 
