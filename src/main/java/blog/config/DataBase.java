@@ -1,7 +1,9 @@
 package blog.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -12,21 +14,26 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@PropertySource("classpath:hibernate.properties")
 public class DataBase {
-
-    private String DB_DRIVER = "com.mysql.jdbc.Driver";
-
-    private String DB_PASSWORD = "root";
-
-    private String DB_URL = "jdbc:mysql://localhost:3306/blog";
-
-    private String DB_USERNAME = "root";
-
-    private String HIBERNATE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
-
-    private String HIBERNATE_SHOW_SQL = "true";
-
-    private String HIBERNATE_HBM2DDL_AUTO = "update";
+    @Value("${db.url}")
+    private String DB_URL;
+    @Value("${db.username}")
+    private String DB_USERNAME;
+    @Value("${db.password}")
+    private String DB_PASSWORD;
+    @Value("${db.driver}")
+    private String DB_DRIVER;
+    @Value("${hibernate.dialect}")
+    private String HIBERNATE_DIALECT;
+    @Value("${hibernate.show-sql}")
+    private String HIBERNATE_SHOW_SQL;
+    @Value("${hibernate.hbm2ddl-auto}")
+    private String HIBERNATE_HBM2DDL_AUTO;
+    @Value("${hibernate.format-sql}")
+    private String HIBERNATE_FORMAT_SQL;
+    @Value("${hibernate.use-sql-comments}")
+    private String HIBERNATE_USE_SQL_COMMENTS;
 
     private String ENTITYMANAGER_PACKAGES_TO_SCAN = "blog";
 
@@ -49,6 +56,8 @@ public class DataBase {
         hibernateProperties.put("hibernate.dialect", HIBERNATE_DIALECT);
         hibernateProperties.put("hibernate.show_sql", HIBERNATE_SHOW_SQL);
         hibernateProperties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
+        hibernateProperties.put("hibernate.format_sql",HIBERNATE_FORMAT_SQL);
+        hibernateProperties.put("hibernate.use_sql_comments",HIBERNATE_USE_SQL_COMMENTS);
         sessionFactoryBean.setHibernateProperties(hibernateProperties);
         return sessionFactoryBean;
     }
