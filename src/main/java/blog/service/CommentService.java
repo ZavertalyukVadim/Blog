@@ -1,6 +1,6 @@
 package blog.service;
 
-import blog.dao.CommentDao;
+import blog.dao.CommentRepository;
 import blog.domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,22 +11,27 @@ import java.util.Date;
 public class CommentService {
     @Autowired
     private
-    CommentDao commentDao;
+    CommentRepository repository;
 
     public Comment deleteCommentById(Integer id) {
-        return commentDao.deleteCommentById(id);
+        repository.delete(id);
+        return null;
     }
 
-    public void addNewComment( String content,Integer post_id) {
-        commentDao.addNewComment(content,new Date(),post_id);
+    public void addNewComment(String content, Integer post_id) {
+        Comment comment = new Comment(content, new Date(), post_id);
+        repository.save(comment);
+//        return comment;
     }
 
     public Comment getCommentById(Integer id) {
-        Comment comment = commentDao.getCommentById(id);
+        Comment comment = repository.findOne(id);
         return comment;
     }
 
     public void updateComment(Integer id, String content) {
-        commentDao.updateComment(id,content);
+        Comment comment = repository.findOne(id);
+        comment.setContent(content);
+        repository.save(comment);
     }
 }
