@@ -48,6 +48,8 @@ public class Tag {
     }
 
     public void setPosts(List<Post> posts) {
-        this.posts = posts;
+        for (Post post:posts){
+            this.posts.add(post);
+        }
     }
 }
