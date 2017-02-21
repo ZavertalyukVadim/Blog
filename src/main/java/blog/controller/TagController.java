@@ -16,8 +16,19 @@ public class TagController {
     TagService tagService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getTagById(ModelMap modelMap,  @PathVariable("id") Integer id) throws IOException {
+    public String getTagById(ModelMap modelMap, @PathVariable("id") Integer id) throws IOException {
         modelMap.addAttribute("tag", tagService.getTagById(id));
         return "allPostWithTag";
+    }
+
+    @RequestMapping(value = "/newTag", method = RequestMethod.GET)
+    String viewTemplateForAddNewCategory() {
+        return "addNewTag";
+    }
+
+    @RequestMapping(value = "/newTag", method = RequestMethod.POST)
+    String AddNewCategory(@RequestParam("name") String name) {
+        tagService.addNewTag(name);
+        return "redirect:/";
     }
 }

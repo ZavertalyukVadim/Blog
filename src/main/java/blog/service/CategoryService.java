@@ -12,9 +12,13 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public Category viewAllPostsWithCurrentCategory(Integer id){
+    public Category viewAllPostsWithCurrentCategory(Integer id) {
         Category category = categoryRepository.findOne(id);
         return category;
     }
 
+    public void addNewCategory(String name, String description) {
+        Category category = new Category(name, description);
+        categoryRepository.save(category);
+    }
 }

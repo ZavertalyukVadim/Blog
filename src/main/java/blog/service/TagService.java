@@ -13,4 +13,9 @@ public class TagService {
     public Tag getTagById(Integer id) {
         return repository.findOne(id);
     }
+
+    public void addNewTag(String name) {
+        Tag tag = new Tag(name);
+        repository.save(tag);
+    }
 }
