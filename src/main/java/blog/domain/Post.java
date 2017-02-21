@@ -67,7 +67,6 @@ public class Post {
     private List<Comment> comments = new ArrayList();
 
 
-
     public Post() {
     }
 
@@ -88,6 +87,7 @@ public class Post {
         this.tag_id = tag_id;
         this.author_id = author_id;
     }
+
 
     public Integer getId() {
         return id;
@@ -165,4 +165,7 @@ public class Post {
         return tags;
     }
 
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
 }
