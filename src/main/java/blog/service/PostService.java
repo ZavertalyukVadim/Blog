@@ -5,6 +5,7 @@ import blog.domain.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,5 +23,10 @@ public class PostService {
 //        Post post = postDao.getPostById(id);
         Post post = repository.findOne(id);
         return post;
+    }
+
+    public void addNewPost(String name, String description, String content) {
+        Post post = new Post(name,description,content,new Date());
+        repository.save(post);
     }
 }

@@ -71,6 +71,13 @@ public class Post {
     public Post() {
     }
 
+    public Post(String title, String description, String content, Date created_date) {
+        this.title = title;
+        this.description = description;
+        this.content = content;
+        this.created_date = created_date;
+    }
+
     public Post(String title, String description, String content, Date created_date, Integer category_id, Integer tag_id, Integer author_id) {
         this.title = title;
         this.description = description;

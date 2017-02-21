@@ -7,6 +7,29 @@
     <title>Post</title>
 </head>
 <body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+            <div class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="/post/newPost">Add post<span class="sr-only">(current)</span></a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="/category/newCategory">Add category<span class="sr-only">(current)</span></a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="/tag/newTag">Add tag<span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+            <%--<div class="nav navbar-nav navbar-right">--%>
+            <%----%>
+            <%--</div>--%>
+            <%--<div class="nav navbar-nav navbar-right">--%>
+            <%----%>
+            <%--</div>--%>
+        </div>
+    </div>
+</nav>
 <div class="page-header">
     <div class="container">
         <h1>Blog</h1>
@@ -14,28 +37,28 @@
 </div>
 <c:forEach items="${posts}" var="post">
 
-        <div class="container panel panel-default">
-            <div class="panel-heading ">
-                    <h2><a href="/post/${post.id}"> ${post.title}</a></h2>
-            </div>
-            <div class="panel-body">
-                <form action="/category/${post.category.id}" method="get">
-                    <button type="submit" class="btn btn-primary btn-xs">${post.category.name}</button>
-                </form>
-                <c:forEach items="${post.tags}" var="tag">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <form action="/tag/${tag.id}" method="get">
-                            <button type="submit" class="btn btn-info btn-xs">${tag.name}</button>
-                        </form>
-                    </div>
-                </c:forEach>
-                <br>
-                <br>
-                <blockquote>
-                    <p class="lead">${post.description}</p>
-                </blockquote>
-            </div>
+    <div class="container panel panel-default">
+        <div class="panel-heading ">
+            <h2><a href="/post/${post.id}"> ${post.title}</a></h2>
         </div>
+        <div class="panel-body">
+            <form action="/category/${post.category.id}" method="get">
+                <button type="submit" class="btn btn-primary btn-xs">${post.category.name}</button>
+            </form>
+            <c:forEach items="${post.tags}" var="tag">
+                <div class="btn-group" role="group" aria-label="...">
+                    <form action="/tag/${tag.id}" method="get">
+                        <button type="submit" class="btn btn-info btn-xs">${tag.name}</button>
+                    </form>
+                </div>
+            </c:forEach>
+            <br>
+            <br>
+            <blockquote>
+                <p class="lead">${post.description}</p>
+            </blockquote>
+        </div>
+    </div>
 
 </c:forEach>
 </body>
