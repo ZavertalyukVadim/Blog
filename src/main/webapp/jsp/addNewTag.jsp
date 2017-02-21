@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
-<form action="/tag/newTag" method="post">
+<form class="container panel panel-default" action="/tag/newTag" method="post">
     <input type="text" name="name" placeholder="add name" required><br>
     <input type="submit" value="Add tag"><br>
 </form>

@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
+
 <div class="panel panel-default ">
     <div class="panel-heading container">
-        Tag: ${tag.name}<br>
+        Tag: ${tag.name}
+        <input type="submit" value="Home" onclick="window.location='/'"><br>
     </div>
-    <br>
     <c:forEach items="${tag.posts}" var="post">
         <%--<h2><a href="/post/${post.id}"> ${post.title}</a></h2>--%>
 
         <div class="container panel panel-default">
-            <%--<div class="">--%>
+                <%--<div class="">--%>
             <div class="panel-heading">
                 <h2><a href="/post/${post.id}"> ${post.title}</a></h2>
             </div>
@@ -36,8 +37,8 @@
                 <blockquote>
                     <p class="lead">${post.description}</p>
                 </blockquote>
-                    </div>
-            <%--</div>--%>
+            </div>
+                <%--</div>--%>
         </div>
     </c:forEach>
 </div>

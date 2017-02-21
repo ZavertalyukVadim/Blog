@@ -36,7 +36,6 @@
     </div>
 </div>
 <c:forEach items="${posts}" var="post">
-
     <div class="container panel panel-default">
         <div class="panel-heading ">
             <h2><a href="/post/${post.id}"> ${post.title}</a></h2>

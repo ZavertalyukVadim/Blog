@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
-<form action="/category/newCategory" method="post">
+<form class="container panel panel-default" action="/category/newCategory" method="post">
     <input type="text" name="name" placeholder="add name" required><br>
     <input type="text" name="description" placeholder="add description" required><br>
     <input type="submit" value="Add Category"><br>

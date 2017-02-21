@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
-<form action="/post/newPost" method="post">
+<form class="container panel panel-default" action="/post/newPost" method="post">
     <input type="text" name="title" placeholder="add title" required><br>
     <input type="text" name="description" placeholder="add description" required><br>
     <input type="text" name="content" placeholder="add content" required><br>

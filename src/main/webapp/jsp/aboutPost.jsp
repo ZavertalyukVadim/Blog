@@ -35,6 +35,7 @@
 <div class="container panel panel-default">
     <div class="panel-heading">
         ${post.title}
+        <input type="submit" value="Home" onclick="window.location='/'">
     </div>
     <div class="panel-body">
         <form action="/category/${post.category.id}" method="get">
@@ -60,15 +61,15 @@
                     <input type="hidden" name="comm_id" value="${comment.id}">
                     <button class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
                 </form>
-                <form  action="/comment/${comment.id}/delete" method="post">
+                <form action="/comment/${comment.id}/delete" method="post">
                     <input type="hidden" name="id" value="${post.id}">
                     <button class="glyphicon glyphicon-remove-sign" aria-hidden="true"></button>
                 </form>
-                <%--<form id="deleteComm"  onsubmit="call()">--%>
+                    <%--<form id="deleteComm"  onsubmit="call()">--%>
                     <%--<input type="hidden" name="comment_id" value="${comment.id}">--%>
                     <%--<input type="hidden" name="post_id" value="${post.id}">--%>
                     <%--<button class="glyphicon glyphicon-remove-sign" aria-hidden="true"></button>--%>
-                <%--</form>--%>
+                    <%--</form>--%>
             </div>
         </c:forEach>
         <form action="/comment/new" method="get">
@@ -77,14 +78,14 @@
         </form>
 
         <%--<form id="form" onsubmit="call()">--%>
-            <%--<input type="hidden" name="id" value="${post.id}">--%>
-            <%--<input type="text" name="name" required>--%>
-            <%--<button class="glyphicon glyphicon-minus" aria-hidden="true"></button>--%>
+        <%--<input type="hidden" name="id" value="${post.id}">--%>
+        <%--<input type="text" name="name" required>--%>
+        <%--<button class="glyphicon glyphicon-minus" aria-hidden="true"></button>--%>
         <%--</form>--%>
 
         <%--<form>--%>
-            <%--<p><input type="text" id="inp1"></p>--%>
-            <%--<p id="p1"></p>--%>
+        <%--<p><input type="text" id="inp1"></p>--%>
+        <%--<p id="p1"></p>--%>
         <%--</form>--%>
         <%--<div class="results">Ждем ответа</div>--%>
     </div>

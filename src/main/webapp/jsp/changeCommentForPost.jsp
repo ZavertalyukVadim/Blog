@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
+
 <div class="container panel panel-default">
     <div class="panel-heading">
         ${post.title}
+        <input type="submit" value="Home" onclick="window.location='/'">
     </div>
     <div class="panel-body">
         <form action="/category/${post.category.id}" method="get">

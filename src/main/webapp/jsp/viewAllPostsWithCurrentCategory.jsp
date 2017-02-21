@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
+
 <div class="panel panel-default ">
     <div class="panel-heading container">
-        Category: ${category.name}<br>
+        Category: ${category.name}
+        <input type="submit" value="Home" onclick="window.location='/'"><br>
     </div>
     <br>
     <c:forEach items="${category.posts}" var="post">
         <div class="container panel panel-default">
-                <%--<div class="">--%>
             <div class="panel-heading">
                 <h2><a href="/post/${post.id}"> ${post.title}</a></h2>
             </div>
@@ -36,7 +37,6 @@
                     <p class="lead">${post.description}</p>
                 </blockquote>
             </div>
-                <%--</div>--%>
         </div>
     </c:forEach>
 
