@@ -1,5 +1,6 @@
 package blog.controller;
 
+import blog.service.CategoryService;
 import blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class PostController {
     private
     PostService postService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getPostById(ModelMap modelMap, @PathVariable(value = "id") String id) throws IOException {
         modelMap.addAttribute("post", postService.getPostById(Integer.parseInt(id)));
@@ -26,15 +30,17 @@ public class PostController {
     }
 
     @RequestMapping(value = "/newPost", method = RequestMethod.GET)
-    String viewTemplateForAddNewPost() {
+    String viewTemplateForAddNewPost(ModelMap modelMap) {
+        modelMap.addAttribute("categories", categoryService.getAllCategories());
         return "addNewPost";
     }
 
     @RequestMapping(value = "/newPost", method = RequestMethod.POST)
     String addNewPost(@RequestParam("title") String name,
-                          @RequestParam("description") String description,
-                          @RequestParam("content") String content) {
-        postService.addNewPost(name,description,content);
+                      @RequestParam("description") String description,
+                      @RequestParam("content") String content,
+                      @RequestParam("category_id") Integer category_id) {
+        postService.addNewPost(name, description, content,category_id);
         return "redirect:/";
     }
 }

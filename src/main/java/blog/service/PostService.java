@@ -25,8 +25,8 @@ public class PostService {
         return post;
     }
 
-    public void addNewPost(String name, String description, String content) {
-        Post post = new Post(name,description,content,new Date());
+    public void addNewPost(String name, String description, String content,Integer category_id) {
+        Post post = new Post(name,description,content,new Date(), category_id);
         repository.save(post);
     }
 }
