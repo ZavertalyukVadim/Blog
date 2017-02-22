@@ -1,9 +1,13 @@
 package blog.domain;
 
+import lombok.*;
+import lombok.experimental.Accessors;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "author")
 public class Author {
@@ -25,30 +29,7 @@ public class Author {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
     private List<Post> posts = new ArrayList();
 
-    public Author() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
     public Author(Integer user_id) {
         this.user_id = user_id;
-    }
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
     }
 }

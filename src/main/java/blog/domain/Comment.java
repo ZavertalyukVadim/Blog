@@ -1,8 +1,17 @@
 package blog.domain;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "comment")
 public class Comment {
@@ -50,49 +59,5 @@ public class Comment {
         this.created_time = created_time;
         this.user_id = user_id;
         this.post_id = post_id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Date getCreated_time() {
-        return created_time;
-    }
-
-    public void setCreated_time(Date created_time) {
-        this.created_time = created_time;
-    }
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
-
-    public Integer getPost_id() {
-        return post_id;
-    }
-
-    public void setPost_id(Integer post_id) {
-        this.post_id = post_id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Post getPost() {
-        return post;
     }
 }
