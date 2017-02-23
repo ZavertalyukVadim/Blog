@@ -7,16 +7,18 @@
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
+<input type="submit" value="Home" onclick="window.location='/'"><br>
 <form class="container panel panel-default" action="/post/newPost" method="post">
+    <br>
     <input type="text" name="title" placeholder="add title" required><br>
     <input type="text" name="description" placeholder="add description" required><br>
     <input type="text" name="content" placeholder="add content" required><br><br>
-    <div class="container panel panel-default">
-        <h5>Only one category!</h5>
-        <c:forEach items="${categories}" var="category">
-            <input type="checkbox" name="category_id" value=${category.id}> ${category.name}<br>
-        </c:forEach>
-    </div>
+        <select name="category_id" >
+            <c:forEach items="${categories}" var="category">
+                <option  value=${category.id}> ${category.name}</option>
+            </c:forEach>
+        </select>
+    <br>
     <br>
 
     <div class="container panel panel-default">

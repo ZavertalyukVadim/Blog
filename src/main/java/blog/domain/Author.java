@@ -29,6 +29,9 @@ public class Author {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
     private List<Post> posts = new ArrayList();
 
+    public Author() {
+    }
+
     public Author(Integer user_id) {
         this.user_id = user_id;
     }
