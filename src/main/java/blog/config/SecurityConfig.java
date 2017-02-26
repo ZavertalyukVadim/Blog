@@ -15,8 +15,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("root").password("root").roles("USER");
         auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-
-
     }
 
     @Override
@@ -24,11 +22,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin").access("hasRole('ADMIN')")
-                .antMatchers("/user").access("hasRole('USER')")
-                .antMatchers("/post/newPost","/tag/newTag","/category/newCategory").access("hasRole('ADMIN')")
-                .antMatchers("/post/**").access("hasRole('USER')")
-                .antMatchers("/tag/**").access("hasRole('USER')")
-                .antMatchers("/category/**").access("hasRole('USER')")
+                .antMatchers("/user","/post/newPost").access("hasRole('USER')")
+                .antMatchers("/tag/newTag","/category/newCategory").access("hasRole('ADMIN')")
+                .antMatchers("/post/**").access("hasRole('USER') or hasRole('ADMIN')")
+                .antMatchers("/tag/**").access("hasRole('USER') or hasRole('ADMIN')")
+                .antMatchers("/category/**").access("hasRole('USER') or hasRole('ADMIN')")
 //                .and().formLogin().loginPage("/login")
                 .and().formLogin()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");

@@ -7,6 +7,16 @@
     <title>Blog</title>
 </head>
 <body>
+<c:if test="${role}">
+    <form action="/logout" method="get">
+        <button type="submit" class="btn btn-primary btn-xs">logout</button>
+    </form>
+</c:if>
+<c:if test="${!role}">
+    <form action="/login" method="get">
+        <button type="submit" class="btn btn-primary btn-xs">login</button>
+    </form>
+</c:if>
 <nav class="navbar navbar-default">
     <div class="container">
         <div id="navbar" class="navbar-collapse collapse">

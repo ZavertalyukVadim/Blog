@@ -19,10 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class MyController {
@@ -37,16 +34,15 @@ public class MyController {
     @Autowired
     private CommentService commentService;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    String home(ModelMap modelMap) {
-        List<User> users = userService.getAllUsers();
-        modelMap.addAttribute("users", users);
-        return "home";
-    }
-
     @RequestMapping(method = RequestMethod.GET)
     String viewAllPost(ModelMap modelMap) {
+        Boolean role;
+        Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        System.out.println("Login="+auth);
+        role = !Objects.equals(auth.toString(), "anonymousUser");
+
         List<Post> posts = postService.getAllPost();
+        modelMap.addAttribute("role", role);
         modelMap.addAttribute("posts", posts);
         return "blog";
     }
@@ -64,7 +60,7 @@ public class MyController {
         }
         List<Post> posts = postService.getAllPost();
         modelMap.addAttribute("posts", posts);
-        return "blog";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/access_denied")
