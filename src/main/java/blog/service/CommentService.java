@@ -1,6 +1,6 @@
 package blog.service;
 
-import blog.dao.CommentRepository;
+import blog.repository.CommentRepository;
 import blog.domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

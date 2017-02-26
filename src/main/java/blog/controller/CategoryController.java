@@ -1,7 +1,5 @@
 package blog.controller;
 
-import blog.dao.CategoryRepository;
-import blog.domain.Category;
 import blog.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

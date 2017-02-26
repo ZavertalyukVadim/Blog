@@ -1,6 +1,6 @@
 package blog.service;
 
-import blog.dao.UserRepository;
+import blog.repository.UserRepository;
 import blog.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

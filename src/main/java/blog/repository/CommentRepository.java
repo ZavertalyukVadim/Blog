@@ -1,7 +1,6 @@
-package blog.dao;
+package blog.repository;
 
 
-import blog.domain.Category;
 import blog.domain.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 

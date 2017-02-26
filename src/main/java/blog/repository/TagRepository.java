@@ -1,4 +1,4 @@
-package blog.dao;
+package blog.repository;
 
 
 import blog.domain.Tag;

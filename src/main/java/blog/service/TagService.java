@@ -1,6 +1,6 @@
 package blog.service;
 
-import blog.dao.TagRepository;
+import blog.repository.TagRepository;
 import blog.domain.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package blog.dao;
+package blog.repository;
 
 import blog.domain.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

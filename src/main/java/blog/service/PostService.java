@@ -1,6 +1,6 @@
 package blog.service;
 
-import blog.dao.PostRepository;
+import blog.repository.PostRepository;
 import blog.domain.Post;
 import blog.domain.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
