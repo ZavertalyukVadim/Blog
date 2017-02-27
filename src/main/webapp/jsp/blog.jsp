@@ -16,6 +16,9 @@
     <form action="/login" method="get">
         <button type="submit" class="btn btn-primary btn-xs">login</button>
     </form>
+    <form action="/registration" method="get">
+        <button type="submit" class="btn btn-primary btn-xs">registration</button>
+    </form>
 </c:if>
 <nav class="navbar navbar-default">
     <div class="container">
