@@ -2,11 +2,9 @@ package blog.controller;
 
 import blog.domain.Comment;
 import blog.domain.Post;
+import blog.domain.Role;
 import blog.domain.User;
-import blog.service.CommentService;
-import blog.service.PostService;
-import blog.service.TagService;
-import blog.service.UserService;
+import blog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,7 +30,12 @@ public class MyController {
     PostService postService;
 
     @Autowired
-    private CommentService commentService;
+    private
+    CommentService commentService;
+
+    @Autowired
+    private
+    RoleService roleService;
 
     @RequestMapping(method = RequestMethod.GET)
     String viewAllPost(ModelMap modelMap) {
@@ -42,6 +45,10 @@ public class MyController {
         role = !Objects.equals(auth.toString(), "anonymousUser");
 
         List<Post> posts = postService.getAllPost();
+        List<Role> roles = roleService.viewAllRoles();
+        for (Role role1:roles){
+            System.out.println("Type="+role1.getType());
+        }
         modelMap.addAttribute("role", role);
         modelMap.addAttribute("posts", posts);
         return "blog";
@@ -53,7 +60,7 @@ public class MyController {
 //    }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response,ModelMap modelMap) {
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);

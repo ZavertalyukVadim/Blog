@@ -46,6 +46,9 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Comment> comments = new ArrayList();
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Role> roles = new ArrayList();
+
     public User() {
     }
 
@@ -116,5 +119,21 @@ public class User {
 
     public List<Comment> getComments() {
         return comments;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
