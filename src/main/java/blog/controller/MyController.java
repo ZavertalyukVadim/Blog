@@ -42,13 +42,25 @@ public class MyController {
         role = !Objects.equals(auth.toString(), "anonymousUser");
 
         List<Post> posts = postService.getAllPost();
-        List<Role> roles = roleService.viewAllRoles();
-//        for (Role role1:roles){
-//            System.out.println("Type="+role1.getType());
-//        }
         modelMap.addAttribute("role", role);
         modelMap.addAttribute("posts", posts);
         return "blog";
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    String addNewUser(@RequestParam("first_name") String first_name,
+                        @RequestParam("last_name") String last_name,
+                        @RequestParam("username") String username,
+                        @RequestParam("email") String email,
+                        @RequestParam("password") String password,
+                        @RequestParam("birthday") String date) {
+        userService.createUser(first_name, last_name, username, email, password, date);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    String registration() {
+        return "registration";
     }
 
 //    @RequestMapping(value = "/login", method = RequestMethod.GET)

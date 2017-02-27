@@ -27,14 +27,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/user/**").permitAll()
                 .antMatchers("/admin").access("hasRole('ADMIN')")
-                .antMatchers("/user","/post/newPost").access("hasRole('USER')")
+                .antMatchers("/post/newPost").access("hasRole('USER')")
                 .antMatchers("/tag/newTag","/category/newCategory").access("hasRole('ADMIN')")
                 .antMatchers("/post/**").access("hasRole('USER') or hasRole('ADMIN')")
                 .antMatchers("/tag/**").access("hasRole('USER') or hasRole('ADMIN')")
                 .antMatchers("/category/**").access("hasRole('USER') or hasRole('ADMIN')")
 //                .and().formLogin().loginPage("/login")
                 .and().formLogin()
+                .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");
     }
 }
