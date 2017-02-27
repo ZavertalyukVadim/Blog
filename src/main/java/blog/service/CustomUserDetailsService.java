@@ -16,6 +16,7 @@ import java.util.List;
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
+
     @Autowired
     private UserService userService;
 
@@ -42,9 +43,9 @@ public class CustomUserDetailsService implements UserDetailsService {
                 authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getType()));
             }
         }
-        if (user.getRoles().isEmpty()) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        }
+//        if (user.getRoles().isEmpty()) {
+//            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+//        }
         System.out.print("authorities :" + authorities);
         return authorities;
     }

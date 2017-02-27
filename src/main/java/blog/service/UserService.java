@@ -33,14 +33,16 @@ public class UserService {
     }
 
     public void createUser(String first_name, String last_name, String username, String email, String password, String date) {
-        Role role = roleRepository.findOne(1);
-        List<Role> roles = new ArrayList<>();
-        roles.add(role);
 
         User user = new User(first_name, last_name, username, email, password, new Date());
-        user.setRoles(roles);
-        role.setUser(user);
+        List<Role> roles = new ArrayList<>();
 
+        Role role = roleRepository.findOne(1);
+        Role role2 = roleRepository.findOne(2);
+        roles.add(role);
+        roles.add(role2);
+
+        user.setRoles(roles);
         repository.save(user);
     }
 }
