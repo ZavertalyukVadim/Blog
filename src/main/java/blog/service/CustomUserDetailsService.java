@@ -37,15 +37,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional(readOnly = true)
     private List<GrantedAuthority> getGrantedAuthorities(User user) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        if (!user.getRoles().isEmpty()) {
-            for (Role role : user.getRoles()) {
-                System.out.println("UserProfile : " + role.getType());
-                authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getType()));
-            }
+
+        for (Role role : user.getRoles()) {
+            System.out.println("UserProfile : " + role.getType());
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getType()));
         }
-//        if (user.getRoles().isEmpty()) {
-//            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-//        }
+
         System.out.print("authorities :" + authorities);
         return authorities;
     }
