@@ -5,9 +5,11 @@ import blog.domain.Post;
 import blog.domain.Role;
 import blog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,6 +37,10 @@ public class MyController {
     private
     RoleService roleService;
 
+    @Autowired
+    @Qualifier("customUserDetailsService")
+    UserDetailsService userDetailsService;
+
     @RequestMapping(method = RequestMethod.GET)
     String viewAllPost(ModelMap modelMap) {
         Boolean role;
@@ -55,7 +61,7 @@ public class MyController {
                         @RequestParam("password") String password,
                         @RequestParam("birthday") String date) {
         userService.createUser(first_name, last_name, username, email, password, date);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -63,10 +69,17 @@ public class MyController {
         return "registration";
     }
 
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    String login() {
-//        return "login";
-//    }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    String authorization( @RequestParam("username") String username,
+                          @RequestParam("password") String password) {
+        userDetailsService.loadUserByUsername(username);
+        return "redirect:/";
+    }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logoutPage(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) {

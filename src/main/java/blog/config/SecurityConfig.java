@@ -34,8 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/post/**").access("hasRole('USER') or hasRole('ADMIN')")
                 .antMatchers("/tag/**").access("hasRole('USER') or hasRole('ADMIN')")
                 .antMatchers("/category/**").access("hasRole('USER') or hasRole('ADMIN')")
-//                .and().formLogin().loginPage("/login")
-                .and().formLogin()
+                .and().formLogin().loginPage("/login")
+//                .and().formLogin()
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");
     }

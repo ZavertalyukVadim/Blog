@@ -13,7 +13,7 @@
     </form>
 </c:if>
 <c:if test="${!role}">
-    <form action="/login" method="get">
+    <form action="/login">
         <button type="submit" class="btn btn-primary btn-xs">login</button>
     </form>
     <form action="/registration" method="get">

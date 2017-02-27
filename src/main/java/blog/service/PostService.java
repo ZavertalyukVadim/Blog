@@ -25,13 +25,13 @@ public class PostService {
         return post;
     }
 
-    public void addNewPost(String name, String description, String content, Integer category_id, List<Tag> tag_id) {
-        List<Post> list = new ArrayList<>();
+    public void addNewPost(String name, String description, String content, Integer category_id, List<Tag> tagList) {
+        List<Post> postList = new ArrayList<>();
         Post post = new Post(name, description, content, new Date(), category_id);
-        list.add(post);
-        post.setTags(tag_id);
+        postList.add(post);
+        post.setTags(tagList);
         for (Tag tag : post.getTags()) {
-            tag.setPosts(list);
+            tag.setPosts(postList);
         }
         repository.save(post);
     }
