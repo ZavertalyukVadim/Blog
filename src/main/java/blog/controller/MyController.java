@@ -3,7 +3,6 @@ package blog.controller;
 import blog.domain.Comment;
 import blog.domain.Post;
 import blog.domain.Role;
-import blog.domain.User;
 import blog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -41,14 +39,13 @@ public class MyController {
     String viewAllPost(ModelMap modelMap) {
         Boolean role;
         Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        System.out.println("Login="+auth);
         role = !Objects.equals(auth.toString(), "anonymousUser");
 
         List<Post> posts = postService.getAllPost();
         List<Role> roles = roleService.viewAllRoles();
-        for (Role role1:roles){
-            System.out.println("Type="+role1.getType());
-        }
+//        for (Role role1:roles){
+//            System.out.println("Type="+role1.getType());
+//        }
         modelMap.addAttribute("role", role);
         modelMap.addAttribute("posts", posts);
         return "blog";
