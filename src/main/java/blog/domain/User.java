@@ -44,10 +44,10 @@ public class User {
     Author author;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Comment> comments = new ArrayList();
+    private List<Comment> comments;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Role> roles = new ArrayList();
+    private List<Role> roles;
 
     public User() {
     }
