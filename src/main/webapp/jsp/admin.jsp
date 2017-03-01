@@ -15,6 +15,22 @@
 <body>
 Dear <strong>${user}</strong>, Welcome to Admin Page.
 <a href="<c:url value="/logout" />">Logout</a>
+<table>
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Username</th>
+        <th>email</th>
+    </tr>
+    <c:forEach items="${users}" var="user">
+        <tr>
+            <td>${user.first_name}</td>
+            <td>${user.last_name}</td>
+            <td>${user.username}</td>
+            <td>${user.email}</td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </body>
 </html>
