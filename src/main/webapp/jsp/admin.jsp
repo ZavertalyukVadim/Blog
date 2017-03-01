@@ -10,27 +10,33 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
 <body>
-Dear <strong>${user}</strong>, Welcome to Admin Page.
-<a href="<c:url value="/logout" />">Logout</a>
-<table>
-    <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Username</th>
-        <th>email</th>
-    </tr>
-    <c:forEach items="${users}" var="user">
+<div class="page-header">
+    Dear <strong>${user}</strong>, Welcome to Admin Page.
+    <a href="<c:url value="/logout" />">Logout</a>
+</div>
+<div class="container panel">
+    <table>
         <tr>
-            <td>${user.first_name}</td>
-            <td>${user.last_name}</td>
-            <td>${user.username}</td>
-            <td>${user.email}</td>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Username</th>
+            <th>email</th>
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach items="${users}" var="user">
+            <tr>
+                <td>${user.first_name}</td>
+                <td>${user.last_name}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 </body>
 </body>
 </html>
