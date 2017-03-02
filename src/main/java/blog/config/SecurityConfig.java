@@ -37,7 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/user/**").access("hasRole('USER')")
                 .antMatchers("/admin").access("hasRole('ADMIN')")
-                .antMatchers("/post/newPost").access("hasRole('USER')")
                 .antMatchers("/tag/newTag","/category/newCategory").access("hasRole('ADMIN')")
                 .antMatchers("/post/**").access("hasRole('USER') or hasRole('ADMIN')")
                 .antMatchers("/tag/**").access("hasRole('USER') or hasRole('ADMIN')")
