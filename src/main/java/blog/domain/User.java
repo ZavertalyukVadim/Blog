@@ -1,6 +1,13 @@
 package blog.domain;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,26 +22,33 @@ public class User {
     private
     Integer id;
 
+    @Size(min=3, max=30)
     @Column(name = "first_name")
     private
     String first_name;
 
+    @Size(min=3, max=30)
     @Column(name = "last_name")
     private
     String last_name;
 
+    @Size(min=3, max=30)
     @Column(name = "username")
     private
     String username;
 
+    @Email
+    @NotEmpty
     @Column(name = "email")
     private
     String email;
+
 
     @Column(name = "password")
     private
     String password;
 
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     @Column(name = "birthday")
     private
     Date birthday;
@@ -52,12 +66,11 @@ public class User {
     public User() {
     }
 
-    public User(String first_name, String last_name, String username, String email, String password, Date birthday) {
+    public User(String first_name, String last_name, String username, String email, Date birthday) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.username = username;
         this.email = email;
-        this.password = password;
         this.birthday = birthday;
     }
 

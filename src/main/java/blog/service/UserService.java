@@ -5,6 +5,7 @@ import blog.repository.RoleRepository;
 import blog.repository.UserRepository;
 import blog.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +19,9 @@ public class UserService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public User getUserById(Integer id) {
         return repository.findOne(id);
@@ -35,8 +39,8 @@ public class UserService {
     public void createUser(String first_name, String last_name, String username, String email, String password, String date) {
         Role role = new Role("USER");
 
-        User user = new User(first_name, last_name, username, email, password, new Date());
-
+        User user = new User(first_name, last_name, username, email, new Date());
+        user.setPassword(passwordEncoder.encode(password));
         repository.save(user);
         role.setUser_id(user.getId());
         roleRepository.save(role);
@@ -48,7 +52,7 @@ public class UserService {
         user.setLast_name(last_name);
         user.setUsername(username);
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         repository.save(user);
     }
 }
