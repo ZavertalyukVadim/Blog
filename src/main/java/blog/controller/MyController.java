@@ -103,11 +103,11 @@ public class MyController {
     }
 
 
-    @RequestMapping(value = "/ajaxtest", method = RequestMethod.POST)
-    @ResponseBody
-    public Comment ajaxTest(@RequestParam("comment_id") Integer comment_id, @RequestParam("post_id") Integer post_id) {
-        return commentService.deleteCommentById(comment_id);
-    }
+//    @RequestMapping(value = "/ajaxtest", method = RequestMethod.POST)
+//    @ResponseBody
+//    public Comment ajaxTest(@RequestParam("comment_id") Integer comment_id, @RequestParam("post_id") Integer post_id) {
+//        return commentService.deleteCommentById(comment_id);
+//    }
 
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
