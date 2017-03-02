@@ -57,13 +57,20 @@ public class MyController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    String addNewUser(@Valid User user) {
+    String addNewUser(@Valid User user,
+                      BindingResult result) {
+        if (result.hasErrors()) {
+            System.out.println("There are errors");
+            return "registration";
+        }
         userService.createUser(user);
         return "redirect:/login";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    String registration() {
+    String registration(ModelMap model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "registration";
     }
 
