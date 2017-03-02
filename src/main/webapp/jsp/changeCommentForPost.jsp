@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
     <title>${post.title}</title>
@@ -34,6 +35,7 @@
 
                 <c:if test="${comment.id == comm.id}">
                     <form action="/comment/update" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <input type="hidden" name="comm_id" value="${comm.id}">
                         <input type="hidden" name="post_id" value="${post.id}">
                         <input type="text" name="content" value=${comm.content} required><br>
@@ -54,6 +56,7 @@
             </div>
         </c:forEach>
         <form action="/comment/new" method="get">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <input type="hidden" name="id" value="${post.id}">
             <button class="glyphicon glyphicon-plus" aria-hidden="true"></button>
         </form>

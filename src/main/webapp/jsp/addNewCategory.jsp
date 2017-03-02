@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
     <title>New Category</title>
@@ -8,6 +9,7 @@
 <body>
 <input type="submit" value="Home" onclick="window.location='/'"><br>
 <form class="container panel panel-default" action="/category/newCategory" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <br>
     <input type="text" name="name" placeholder="add name" required><br>
     <input type="text" name="description" placeholder="add description" required><br>

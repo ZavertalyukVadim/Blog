@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -9,6 +10,7 @@
 <body>
 <input type="submit" value="Home" onclick="window.location='/'"><br>
 <form class="container panel panel-default" action="/post/newPost" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <br>
     <input type="text" name="title" placeholder="add title" required><br>
     <input type="text" name="description" placeholder="add description" required><br>
