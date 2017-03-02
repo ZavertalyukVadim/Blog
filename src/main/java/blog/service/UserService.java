@@ -36,16 +36,6 @@ public class UserService {
         return repository.findUserByUsername(username);
     }
 
-    public void createUser(String first_name, String last_name, String username, String email, String password, String date) {
-        Role role = new Role("USER");
-
-        User user = new User(first_name, last_name, username, email, new Date());
-        user.setPassword(passwordEncoder.encode(password));
-        repository.save(user);
-        role.setUser_id(user.getId());
-        roleRepository.save(role);
-    }
-
     public void changeUser(Integer id, String first_name, String last_name, String username, String email, String password) {
         User user = repository.findOne(id);
         user.setFirst_name(first_name);
@@ -54,5 +44,15 @@ public class UserService {
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
         repository.save(user);
+    }
+
+    public void createUser(User user) {
+        Role role = new Role("USER");
+
+        User currentUser = new User(user.getFirst_name(), user.getLast_name(), user.getUsername(), user.getEmail(), user.getBirthday());
+        currentUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        repository.save(currentUser);
+        role.setUser_id(currentUser.getId());
+        roleRepository.save(role);
     }
 }

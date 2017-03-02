@@ -3,6 +3,7 @@ package blog.controller;
 import blog.domain.Comment;
 import blog.domain.Post;
 import blog.domain.Role;
+import blog.domain.User;
 import blog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,10 +14,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -54,13 +57,8 @@ public class MyController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    String addNewUser(@RequestParam("first_name") String first_name,
-                      @RequestParam("last_name") String last_name,
-                      @RequestParam("username") String username,
-                      @RequestParam("email") String email,
-                      @RequestParam("password") String password,
-                      @RequestParam("birthday") String date) {
-        userService.createUser(first_name, last_name, username, email, password, date);
+    String addNewUser(@Valid User user){
+        userService.createUser(user);
         return "redirect:/login";
     }
 

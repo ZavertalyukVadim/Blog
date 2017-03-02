@@ -43,12 +43,13 @@ public class User {
     private
     String email;
 
-
+    @NotEmpty
     @Column(name = "password")
     private
     String password;
 
     @DateTimeFormat(pattern="dd/MM/yyyy")
+    @Past @NotNull
     @Column(name = "birthday")
     private
     Date birthday;
