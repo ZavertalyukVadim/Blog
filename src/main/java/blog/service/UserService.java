@@ -41,4 +41,14 @@ public class UserService {
         role.setUser_id(user.getId());
         roleRepository.save(role);
     }
+
+    public void changeUser(Integer id, String first_name, String last_name, String username, String email, String password) {
+        User user = repository.findOne(id);
+        user.setFirst_name(first_name);
+        user.setLast_name(last_name);
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+        repository.save(user);
+    }
 }

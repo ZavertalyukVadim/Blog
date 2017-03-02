@@ -104,11 +104,7 @@ public class MyController {
         return "admin";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String dbaPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
-        return "user";
-    }
+
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.POST)
     @ResponseBody

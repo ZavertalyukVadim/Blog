@@ -33,6 +33,11 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/tag/newTag">Add tag<span class="sr-only">(current)</span></a></li>
                 </ul>
+                <c:if test="${role}">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/user">User Profile<span class="sr-only">(current)</span></a></li>
+                    </ul>
+                </c:if>
             </div>
             <%--<div class="nav navbar-nav navbar-right">--%>
             <%----%>
