@@ -39,12 +39,6 @@
                     </ul>
                 </c:if>
             </div>
-            <%--<div class="nav navbar-nav navbar-right">--%>
-            <%----%>
-            <%--</div>--%>
-            <%--<div class="nav navbar-nav navbar-right">--%>
-            <%----%>
-            <%--</div>--%>
         </div>
     </div>
 </nav>

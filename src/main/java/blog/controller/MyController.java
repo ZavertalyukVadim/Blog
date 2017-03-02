@@ -57,7 +57,7 @@ public class MyController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    String addNewUser(@Valid User user){
+    String addNewUser(@Valid User user) {
         userService.createUser(user);
         return "redirect:/login";
     }
@@ -70,13 +70,6 @@ public class MyController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     String login() {
         return "login";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    String authorization(@RequestParam("username") String username,
-                         @RequestParam("password") String password) {
-        userDetailsService.loadUserByUsername(username);
-        return "redirect:/";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -101,7 +94,6 @@ public class MyController {
         model.addAttribute("users", userService.getAllUsers());
         return "admin";
     }
-
 
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.POST)
