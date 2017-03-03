@@ -77,7 +77,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="birthday">BD</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="birthday" id="birthday" class="form-control input-sm"/>
+                    <form:input type="text" path="birthday" id="birthday" class="form-control input-sm" placeholder="dd/mm/yyyy"/>
                     <div class="has-error">
                         <form:errors path="birthday" class="help-inline"/>
                     </div>
