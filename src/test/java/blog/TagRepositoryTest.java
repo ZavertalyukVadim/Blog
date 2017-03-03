@@ -5,15 +5,12 @@ import blog.repository.TagRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
@@ -30,27 +27,35 @@ public class TagRepositoryTest {
     private
     TagRepository repository;
 
-    private Tag home, street, sky;
+    private Tag home, street, sky, car, box;
     private Integer id;
 
     private void flushCategories() {
         home = new Tag("home");
         street = new Tag("street");
         sky = new Tag("sky");
+        car = new Tag("car");
+        box = new Tag("box");
 
         this.repository.save(home);
         this.repository.save(street);
         this.repository.save(sky);
+        this.repository.save(car);
+        this.repository.save(box);
 
         id = home.getId();
 
         assertThat(id, is(notNullValue()));
         assertThat(street.getId(), is(notNullValue()));
         assertThat(sky.getId(), is(notNullValue()));
+        assertThat(car.getId(), is(notNullValue()));
+        assertThat(box.getId(), is(notNullValue()));
 
         assertThat(repository.exists(home.getId()), is(true));
         assertThat(repository.exists(street.getId()), is(true));
         assertThat(repository.exists(sky.getId()), is(true));
+        assertThat(repository.exists(car.getId()), is(true));
+        assertThat(repository.exists(box.getId()), is(true));
     }
 
     @Test
@@ -60,7 +65,7 @@ public class TagRepositoryTest {
 
         flushCategories();
 
-        assertThat(this.repository.count(), is(count + 3));
+        assertThat(this.repository.count(), is(count + 5));
     }
 
     @Test
@@ -76,14 +81,6 @@ public class TagRepositoryTest {
         flushCategories();
 
         assertThat(repository.findOne(id * 11), is(nullValue()));
-    }
-
-    @SuppressWarnings("RedundantCast")
-    @Test
-    public void testSavingNullCollectionIsNoOp() throws Exception {
-        List<Tag> result = repository.save((Collection<Tag>) null);
-        assertThat(result, is(notNullValue()));
-        assertThat(result.isEmpty(), is(true));
     }
 
     @Test
@@ -114,7 +111,7 @@ public class TagRepositoryTest {
     }
 
     @Test
-    public void testDeleteACategoryById() throws Exception {
+    public void testDeleteTagById() throws Exception {
         flushCategories();
 
         repository.delete(home.getId());
@@ -134,8 +131,8 @@ public class TagRepositoryTest {
     public void testReadAll() throws Exception {
         flushCategories();
 
-        assertThat(repository.count(), is(3L));
-        assertThat(repository.findAll(), hasItems(home, street, sky));
+        assertThat(repository.count(), is(5L));
+        assertThat(repository.findAll(), hasItems(home, street, sky, car, box));
     }
 
     @Test
@@ -152,23 +149,12 @@ public class TagRepositoryTest {
 
         List<Tag> result = repository.findAll(new Sort(ASC, "name"));
         assertThat(result, is(notNullValue()));
-        assertThat(result.size(), is(3));
-        assertThat(result.get(0), is(home));
-        assertThat(result.get(1), is(sky));
-        assertThat(result.get(2), is(street));
-    }
-
-    @Test
-    public void testReturnsIgnoreCaseAllSortedCorrectly() throws Exception {
-        flushCategories();
-
-        Sort.Order order = new Sort.Order(ASC, "name").ignoreCase();
-        List<Tag> result = repository.findAll(new Sort(order));
-        assertThat(result, is(notNullValue()));
-        assertThat(result.size(), is(3));
-        assertThat(result.get(0), is(home));
-        assertThat(result.get(1), is(sky));
-        assertThat(result.get(2), is(street));
+        assertThat(result.size(), is(5));
+        assertThat(result.get(0), is(box));
+        assertThat(result.get(1), is(car));
+        assertThat(result.get(2), is(home));
+        assertThat(result.get(3), is(sky));
+        assertThat(result.get(4), is(street));
     }
 
     @Test
@@ -205,8 +191,8 @@ public class TagRepositoryTest {
     public void testExecutesNotLikeCorrectly() throws Exception {
         flushCategories();
 
-        List<Tag> result = repository.findByNameNotLike("%ps1%");
-        assertThat(result.size(), is(3));
-        assertThat(result, hasItems(home, street, sky));
+        List<Tag> result = repository.findByNameNotLike("%ee1%");
+        assertThat(result.size(), is(5));
+        assertThat(result, hasItems(home, street, sky, car, box));
     }
 }
