@@ -18,7 +18,7 @@ import java.util.List;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserService userService;
+    private UserService service;
 
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username)
