@@ -16,13 +16,11 @@ public class PostService {
     private PostRepository repository;
 
     public List<Post> getAllPost() {
-        List<Post> posts = repository.findAll();
-        return posts;
+        return repository.findAll();
     }
 
     public Post getPostById(Integer id) {
-        Post post = repository.findOne(id);
-        return post;
+        return repository.findOne(id);
     }
 
     public void addNewPost(String name, String description, String content, Integer category_id, List<Tag> tagList) {

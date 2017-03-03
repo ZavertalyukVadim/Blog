@@ -24,26 +24,25 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User getUserById(Integer id) {
-        return repository.findOne(id);
+        return userRepository.findOne(id);
     }
 
     public List<User> getAllUsers() {
-        List<User> users = repository.findAll();
-        return users;
+        return userRepository.findAll();
     }
 
     public User getUserByUsername(String username) {
-        return repository.findUserByUsername(username);
+        return userRepository.findUserByUsername(username);
     }
 
     public void changeUser(Integer id, String first_name, String last_name, String username, String email, String password) {
-        User user = repository.findOne(id);
+        User user = userRepository.findOne(id);
         user.setFirst_name(first_name);
         user.setLast_name(last_name);
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
-        repository.save(user);
+        userRepository.save(user);
     }
 
     public void createUser(User user) {
@@ -51,7 +50,7 @@ public class UserService {
 
         User currentUser = new User(user.getFirst_name(), user.getLast_name(), user.getUsername(), user.getEmail(), user.getBirthday());
         currentUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        repository.save(currentUser);
+        userRepository.save(currentUser);
         role.setUser_id(currentUser.getId());
         roleRepository.save(role);
     }

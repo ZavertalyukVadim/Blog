@@ -33,14 +33,6 @@ public class MyController {
     PostService postService;
 
     @Autowired
-    private
-    CommentService commentService;
-
-    @Autowired
-    private
-    RoleService roleService;
-
-    @Autowired
     @Qualifier("customUserDetailsService")
     UserDetailsService userDetailsService;
 

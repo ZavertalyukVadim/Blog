@@ -13,8 +13,7 @@ public class CategoryService {
     private CategoryRepository repository;
 
     public Category viewAllPostsWithCurrentCategory(Integer id) {
-        Category category = repository.findOne(id);
-        return category;
+        return repository.findOne(id);
     }
 
     public void addNewCategory(String name, String description) {

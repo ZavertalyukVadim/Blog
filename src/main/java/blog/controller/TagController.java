@@ -13,11 +13,11 @@ import java.io.IOException;
 public class TagController {
     @Autowired
     private
-    TagService tagService;
+    TagService service;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getTagById(ModelMap modelMap, @PathVariable("id") Integer id) throws IOException {
-        modelMap.addAttribute("tag", tagService.getTagById(id));
+        modelMap.addAttribute("tag", service.getTagById(id));
         return "allPostWithTag";
     }
 
@@ -28,7 +28,7 @@ public class TagController {
 
     @RequestMapping(value = "/newTag", method = RequestMethod.POST)
     String AddNewCategory(@RequestParam("name") String name) {
-        tagService.addNewTag(name);
+        service.addNewTag(name);
         return "redirect:/";
     }
 }

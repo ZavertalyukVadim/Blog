@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CategoryController {
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryService service;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     String viewAllPostsWithCurrentCategory(ModelMap modelMap, @PathVariable("id") Integer id) {
-        modelMap.addAttribute("category", categoryService.viewAllPostsWithCurrentCategory(id));
+        modelMap.addAttribute("category", service.viewAllPostsWithCurrentCategory(id));
         return "viewAllPostsWithCurrentCategory";
     }
 
@@ -29,7 +29,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/newCategory", method = RequestMethod.POST)
     String AddNewCategory(@RequestParam("name") String name, @RequestParam("description") String description) {
-        categoryService.addNewCategory(name, description);
+        service.addNewCategory(name, description);
         return "redirect:/";
     }
 }

@@ -1,6 +1,5 @@
 package blog.controller;
 
-import blog.domain.Post;
 import blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -23,17 +21,17 @@ public class UserController {
 
     @Autowired
     private
-    UserService userService;
+    UserService service;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String userPage(ModelMap model) {
-        model.addAttribute("user", userService.getUserByUsername(getPrincipal()));
+        model.addAttribute("user", service.getUserByUsername(getPrincipal()));
         return "aboutUser";
     }
 
     @RequestMapping(value = "/changeProfile", method = RequestMethod.GET)
     public String aboutUserForChange(ModelMap model) {
-        model.addAttribute("user", userService.getUserByUsername(getPrincipal()));
+        model.addAttribute("user", service.getUserByUsername(getPrincipal()));
         return "aboutUserForChange";
     }
 
@@ -47,7 +45,7 @@ public class UserController {
                              @RequestParam("username") String username,
                              @RequestParam("email") String email,
                              @RequestParam("password") String password) {
-        userService.changeUser(id, first_name, last_name, username, email, password);
+        service.changeUser(id, first_name, last_name, username, email, password);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);

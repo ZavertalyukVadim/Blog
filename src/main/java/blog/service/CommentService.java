@@ -21,7 +21,6 @@ public class CommentService {
     public void addNewComment(String content, Integer post_id) {
         Comment comment = new Comment(content, new Date(), post_id);
         repository.save(comment);
-//        return comment;
     }
 
     public Comment getCommentById(Integer id) {

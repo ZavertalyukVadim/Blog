@@ -13,7 +13,6 @@ public class RoleService {
     RoleRepository repository;
 
     public List<Role> viewAllRoles() {
-        List<Role> roles = repository.findAll();
-        return roles;
+        return repository.findAll();
     }
 }
