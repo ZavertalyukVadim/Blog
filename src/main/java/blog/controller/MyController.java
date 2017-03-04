@@ -1,8 +1,6 @@
 package blog.controller;
 
-import blog.domain.Comment;
 import blog.domain.Post;
-import blog.domain.Role;
 import blog.domain.User;
 import blog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +29,10 @@ public class MyController {
     @Autowired
     private
     PostService postService;
+
+    @Autowired
+    private
+    CommentService commentService;
 
     @Autowired
     @Qualifier("customUserDetailsService")
@@ -96,9 +98,11 @@ public class MyController {
 
 
 //    @RequestMapping(value = "/ajaxtest", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Comment ajaxTest(@RequestParam("comment_id") Integer comment_id, @RequestParam("post_id") Integer post_id) {
-//        return commentService.deleteCommentById(comment_id);
+////    @ResponseBody
+//    public String ajaxTest(@RequestParam("id") Integer comment_id) {
+//        System.out.println(comment_id);
+////        return commentService.deleteCommentById(comment_id);
+//        return "redirect:/aboutPost";
 //    }
 
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
