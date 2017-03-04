@@ -40,7 +40,7 @@
                     </div>
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}" />
-
+                    <div>Remember Me: <input type="checkbox" name="remember-me" /></div>
                     <div class="form-actions">
                         <input type="submit"
                                class="btn btn-block btn-primary btn-default" value="Log in">
