@@ -11,7 +11,7 @@ public class AjaxController {
     private
     CommentService commentService;
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public void ajaxTest( @PathVariable("id") Integer id) {
         commentService.deleteCommentById(id);
     }

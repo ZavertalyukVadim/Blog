@@ -8,39 +8,17 @@
     <link rel="stylesheet" href="../resources/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         function deleteComm(id) {
             $.ajax({
-                type: "POST",
+                async: false,
+                type: "GET",
                 url: "/ajaxtest/" + id
-            })
-        }
-
-        function remove() {
-            $('.delete').click(function () {
-                var id = $(this).val();
-                var id_comment = "comment_" + id;
-                var comment = document.getElementById(id_comment);
-//                alert("!");
-                $.ajax({
-                    type: "GET",
-                    url: "/ajaxtest",
-                    data: {'id': id},
-                    response: "text",
-                    success: function () {
-//                        comment.remove(comment);
-                        comment.parentNode.removeChild(comment);
-//                        alert("yeeeeeeeeees!");
-                    }
-                })
             })
         }
     </script>
 </head>
 <body>
-
 <div class="container panel panel-default">
     <div class="panel-heading">
         ${post.title}
@@ -71,10 +49,6 @@
                         <input type="hidden" name="comm_id" value="${comment.id}">
                         <button class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
                     </form>
-                        <%--<form class="delete">--%>
-                        <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-                        <%--<button class="delete btn-link" value="${comment.id}">Видалити</button>--%>
-                        <%--</form>--%>
                     <a href="" onclick="deleteComm(${comment.id})">
                         <i class="material-icons" style="color: red; font-size:20px">delete_forever</i>
                     </a>
