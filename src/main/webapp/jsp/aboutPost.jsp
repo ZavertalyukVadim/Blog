@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 <head>
     <title>${post.title}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,7 +13,7 @@
     <script type="text/javascript">
         function deleteComm(id) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "/ajaxtest/" + id
             })
         }
@@ -73,7 +73,7 @@
                     </form>
                         <%--<form class="delete">--%>
                         <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-                    <%--<button class="delete btn-link" value="${comment.id}">Видалити</button>--%>
+                        <%--<button class="delete btn-link" value="${comment.id}">Видалити</button>--%>
                         <%--</form>--%>
                     <a href="" onclick="deleteComm(${comment.id})">
                         <i class="material-icons" style="color: red; font-size:20px">delete_forever</i>
