@@ -11,9 +11,8 @@
     <script src="http://malsup.github.com/jquery.form.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        function deleteTask(id) {
+        function deleteComm(id) {
             $.ajax({
-                async: false,
                 type: "GET",
                 url: "/ajaxtest/" + id
             })
@@ -76,7 +75,7 @@
                         <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
                     <%--<button class="delete btn-link" value="${comment.id}">Видалити</button>--%>
                         <%--</form>--%>
-                    <a href="" onclick="deleteTask(${comment.id})">
+                    <a href="" onclick="deleteComm(${comment.id})">
                         <i class="material-icons" style="color: red; font-size:20px">delete_forever</i>
                     </a>
                 </div>
