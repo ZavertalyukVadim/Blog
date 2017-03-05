@@ -8,24 +8,22 @@
 </head>
 <body>
 <c:if test="${role}">
-    <form action="/logout" method="get">
-        <button type="submit" class="btn btn-primary btn-xs">logout</button>
-    </form>
+    <span>
+        <a href="/logout" style="margin-left: 96%;" class="btn btn-primary btn-xs">Logout</a>
+    </span>
 </c:if>
 <c:if test="${!role}">
-    <form action="/login">
-        <button type="submit" class="btn btn-primary btn-xs">login</button>
-    </form>
-    <form action="/registration" method="get">
-        <button type="submit" class="btn btn-primary btn-xs">registration</button>
-    </form>
+    <span class="">
+        <a href="/login" class="btn btn-primary btn-xs" style="margin-left: 92%;">Sing in</a>
+       <a href="/registration" class="btn btn-primary btn-xs">Sing up</a>
+    </span>
 </c:if>
 <nav class="navbar navbar-default">
     <div class="container">
         <div id="navbar" class="navbar-collapse collapse">
             <div class="nav navbar-nav navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="/post/newPost">Add post<span class="sr-only">(current)</span></a></li>
+                    <li><a href="/post/newPost">Add post</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
                     <li><a href="/category/newCategory">Add category<span class="sr-only">(current)</span></a></li>

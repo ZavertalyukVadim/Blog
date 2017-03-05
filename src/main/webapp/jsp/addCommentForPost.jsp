@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
-<input type="submit" value="Home" onclick="window.location='/'"><br>
 <div class="container panel panel-default">
     <div class="panel-heading">
         ${post.title}
+        <input type="submit" value="Home" style="margin-left: 92%;" onclick="window.location='/' ">
     </div>
     <div class="panel-body">
         <form action="/category/${post.category.id}" method="get">

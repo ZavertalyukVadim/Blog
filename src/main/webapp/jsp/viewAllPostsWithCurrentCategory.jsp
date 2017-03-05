@@ -12,7 +12,7 @@
 <div class="panel panel-default ">
     <div class="panel-heading container">
         Category: ${category.name}
-        <input type="submit" value="Home" onclick="window.location='/'"><br>
+        <input type="submit" value="Home" style="margin-left:80%" onclick="window.location='/'"><br>
     </div>
     <br>
     <c:forEach items="${category.posts}" var="post">

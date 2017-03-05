@@ -11,13 +11,10 @@
 <div class="panel panel-default ">
     <div class="panel-heading container">
         Tag: ${tag.name}
-        <input type="submit" value="Home" onclick="window.location='/'"><br>
+        <input type="submit" value="Home" style="margin-left: 87%" onclick="window.location='/'"><br>
     </div>
     <c:forEach items="${tag.posts}" var="post">
-        <%--<h2><a href="/post/${post.id}"> ${post.title}</a></h2>--%>
-
         <div class="container panel panel-default">
-                <%--<div class="">--%>
             <div class="panel-heading">
                 <h2><a href="/post/${post.id}"> ${post.title}</a></h2>
             </div>

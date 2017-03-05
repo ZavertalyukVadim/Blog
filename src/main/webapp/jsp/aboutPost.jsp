@@ -22,7 +22,7 @@
 <div class="container panel panel-default">
     <div class="panel-heading">
         ${post.title}
-        <input type="submit" value="Home" onclick="window.location='/'">
+        <input type="submit" value="Home" style="margin-left: 92%;" onclick="window.location='/' ">
     </div>
     <div class="panel-body">
         <form action="/category/${post.category.id}" method="get">
