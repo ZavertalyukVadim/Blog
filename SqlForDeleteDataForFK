@@ -1,0 +1,91 @@
+ CREATE TABLE `Person` (
+  `BusinessEntityID` int(11) NOT NULL AUTO_INCREMENT,
+  `PersonType` varchar(20) DEFAULT NULL,
+  `NameStyle` varchar(20) DEFAULT NULL,
+  `Title` varchar(20) DEFAULT NULL,
+  `FirstName` varchar(20) DEFAULT NULL,
+  `MiddleName` varchar(20) DEFAULT NULL,
+  `LastName` varchar(20) DEFAULT NULL,
+  `Suffix` varchar(20) DEFAULT NULL,
+  `EmailPromotion` varchar(20) DEFAULT NULL,
+  `AdditionalContactInfo` varchar(20) DEFAULT NULL,
+  `Demographics` varchar(20) DEFAULT NULL,
+  `rowguid` varchar(20) DEFAULT NULL,
+  `ModifiedDate` date DEFAULT NULL,
+  PRIMARY KEY (`BusinessEntityID`),
+  UNIQUE KEY `Person_BussinesEntityID_uindex` (`BusinessEntityID`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `PersonPhone` (
+  `BusinessEntityID` int(11) NOT NULL,
+  `PhoneNumber` mediumtext,
+  `PhoneNumberTypeID` int(11) NOT NULL AUTO_INCREMENT,
+  `ModifiedDate` date DEFAULT NULL,
+  PRIMARY KEY (`PhoneNumberTypeID`),
+  UNIQUE KEY `PersonPhone_PhoneNumberTypeID_uindex` (`PhoneNumberTypeID`),
+  KEY `BusinessEntityID_fk` (`BusinessEntityID`),
+  CONSTRAINT `BusinessEntityID_fk` FOREIGN KEY (`BusinessEntityID`) REFERENCES `Person` (`BusinessEntityID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+
+
+
+
+INSERT INTO Person (PersonType, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, EmailPromotion, AdditionalContactInfo, Demographics, rowguid, ModifiedDate)
+  VALUES ('personType', 'nameStyle', 'title', 'firstName', 'middleName', 'lastName', 'suffix', 'emailPromotion', 'addContactInfo', 'demographics', 'rowguid', '20170101');
+
+  INSERT INTO Person (PersonType, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, EmailPromotion, AdditionalContactInfo, Demographics, rowguid, ModifiedDate)
+  VALUES ('personType', 'nameStyle', 'title', 'firstName', 'middleName', 'lastName', 'suffix', 'emailPromotion', 'addContactInfo', 'demographics', 'rowguid', '20170101');
+
+  INSERT INTO Person (PersonType, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, EmailPromotion, AdditionalContactInfo, Demographics, rowguid, ModifiedDate)
+  VALUES ('personType', 'nameStyle', 'title', 'firstName', 'middleName', 'lastName', 'suffix', 'emailPromotion', 'addContactInfo', 'demographics', 'rowguid', '20170101');
+
+  INSERT INTO Person (PersonType, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, EmailPromotion, AdditionalContactInfo, Demographics, rowguid, ModifiedDate)
+  VALUES ('personType', 'nameStyle', 'title', 'firstName', 'middleName', 'lastName', 'suffix', 'emailPromotion', 'addContactInfo', 'demographics', 'rowguid', '20170101');
+
+  INSERT INTO Person (PersonType, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, EmailPromotion, AdditionalContactInfo, Demographics, rowguid, ModifiedDate)
+  VALUES ('personType', 'nameStyle', 'title', 'firstName', 'middleName', 'lastName', 'suffix', 'emailPromotion', 'addContactInfo', 'demographics', 'rowguid', '20170101');
+
+
+
+
+SELECT @id := MIN(BusinessEntityID) FROM Person;
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id, '12345', '20170202');
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id, '12345', '20170202');
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id+1, '12345', '20170202');
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id+1, '12345', '20170202');
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id+2, '12345', '20170202');
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id+2, '12345', '20170202');
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id+3, '12345', '20170202');
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id+3, '12345', '20170202');
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id+4, '12345', '20170202');
+
+    INSERT INTO PersonPhone (BusinessEntityID, PhoneNumber, ModifiedDate)
+    VALUES (@id+4, '12345', '20170202');
+
+
+
+
+
+DELETE
+FROM Person
+WHERE BusinessEntityID = YourID;
+
