@@ -52,7 +52,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/tag/**").access("hasRole('USER') or hasRole('ADMIN')")
                 .antMatchers("/category/**").access("hasRole('USER') or hasRole('ADMIN')")
                 .and().formLogin().loginPage("/login")
-//                .and().formLogin()
                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");

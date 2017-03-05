@@ -15,6 +15,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -29,10 +30,6 @@ public class MyController {
     @Autowired
     private
     PostService postService;
-
-    @Autowired
-    private
-    CommentService commentService;
 
     @Autowired
     @Qualifier("customUserDetailsService")
@@ -77,6 +74,13 @@ public class MyController {
     public String logoutPage(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
+            for (Cookie cookie : request.getCookies())
+            {
+                if (cookie.getName().equals("remember-me")) {
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                }
+            }
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         List<Post> posts = postService.getAllPost();
@@ -95,15 +99,6 @@ public class MyController {
         model.addAttribute("users", userService.getAllUsers());
         return "admin";
     }
-
-
-//    @RequestMapping(value = "/ajaxtest", method = RequestMethod.POST)
-////    @ResponseBody
-//    public String ajaxTest(@RequestParam("id") Integer comment_id) {
-//        System.out.println(comment_id);
-////        return commentService.deleteCommentById(comment_id);
-//        return "redirect:/aboutPost";
-//    }
 
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
